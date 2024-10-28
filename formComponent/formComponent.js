@@ -25,11 +25,11 @@ export const generateReservationForm = (parentElement) => {
             
             submitButton.onclick = () => {
                 // struttura dati con i valori della form
-                let dateVal = document.getElementById("dateInput").value.split;
+                let dateVal = document.getElementById("dateInput").value.split("-");
                 let hourVal = document.getElementById("hourInput").value;
-                let nameVal = document.getElementById("nameVal").value;
+                let nameVal = document.getElementById("nameInput").value;
 
-                const key = type + "-" + (parseInt(dateVal[0]) + parseInt(dateVal[1]) + parseInt(dateVal[2])) + "-" + hourVal;
+                const key = type + "-" + dateVal[2] + dateVal[1] + dateVal[0] + "-" + hourVal;
                 const reservation = {}
                 reservation[key] = nameVal;
                 
