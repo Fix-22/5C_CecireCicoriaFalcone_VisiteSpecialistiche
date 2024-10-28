@@ -1,3 +1,7 @@
 import {generateReservationForm} from "./formComponent/formComponent.js";
 
-const formBody = document.getElementById("formBody");
+const modalBody = document.getElementById("modalBody");
+
+const reservationForm = generateReservationForm(modalBody);
+reservationForm.build([8, 9, 10, 11, 12]);
+reservationForm.render();

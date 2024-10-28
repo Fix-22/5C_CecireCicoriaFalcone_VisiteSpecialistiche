@@ -1,6 +1,7 @@
 export const generateReservationForm = (parentElement) => {
     let configuration;
     let callback;
+    let type;
 
     return {
         build: (inputConfiguration) => {
@@ -10,10 +11,11 @@ export const generateReservationForm = (parentElement) => {
             callback = inputCallback;
         },
         render: () => {
-            let html = '<form id="reservationForm" class="container"><label>Data</label><input type="date" id="dateInput" class="form-control"><select id="hour">';
+            let html = '<form id="reservationForm" class="container"><label>Data</label><input type="date" id="dateInput" class="form-control"><label>Ora</label><select id="hourInput" class="form-select">';
             
             html += configuration.map(e => '<option value="' + e + '">' + e + '</option>').join("")
                     + '</select>'
+                    + '<label>Nominativo</label><input type="text" id="nameInput" class="form-control">'
                     + '<label id="resultLabel"></label>'
                     + '</form>';
             
@@ -23,12 +25,13 @@ export const generateReservationForm = (parentElement) => {
             
             submitButton.onclick = () => {
                 // struttura dati con i valori della form
-                let dateValSplit = document.querySelector("#dateInput").value.split("-");
-                const reservation = {"data": dateValSplit[0] + "-" + parseInt(dateValSplit[1]) + "-" + parseInt(dateValSplit[2])};
-                
-                Object.keys(configuration).map(e => { // aggiunge alla struttura il valore di ogni input e il corrispettivo nome
-                    reservation[e] = parseInt(document.querySelector("#" + e).value) >= 0 ? parseInt(document.querySelector("#" + e).value) : NaN;
-                });
+                let dateVal = document.getElementById("dateInput").value.split;
+                let hourVal = document.getElementById("hourInput").value;
+                let nameVal = document.getElementById("nameVal").value;
+
+                const key = type + "-" + (parseInt(dateVal[0]) + parseInt(dateVal[1]) + parseInt(dateVal[2])) + "-" + hourVal;
+                const reservation = {}
+                reservation[key] = nameVal;
                 
                 callback(reservation);
             };
@@ -40,6 +43,9 @@ export const generateReservationForm = (parentElement) => {
             else {
                 document.getElementById("resultLabel").innerText = "KO";
             }
+        },
+        setType: (inputType) => {
+            type = inputType;
         },
         clear: () => {
             document.querySelectorAll(".form-control").forEach(e => e.value = "");
