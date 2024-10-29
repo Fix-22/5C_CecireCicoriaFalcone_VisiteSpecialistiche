@@ -2,8 +2,8 @@ import {generateReservationForm} from "./formComponent/formComponent.js";
 import {generateNavbar} from "./navbarComponent/navbarComponent.js";
 
 const modalBody = document.getElementById("modalBody");
-const clearFormButtons = document.querySelectorAll(".clearForm");
 const navbarContainer = document.getElementById("navbarContainer");
+const clearFormButtons = document.querySelectorAll(".clearForm");
 
 let confFileContent;
 const hours = [8, 9, 10, 11, 12];
@@ -16,6 +16,11 @@ fetch("./conf.json")
     const navbar = generateNavbar(navbarContainer);
     navbar.build(confFileContent["tipologie"]);
     navbar.render();
+    navbar.onclick(category => {
+        console.log(category);
+    });
+    console.log(navbar.getCurrentCategory());
+    
 });
 
 const reservationForm = generateReservationForm(modalBody);
