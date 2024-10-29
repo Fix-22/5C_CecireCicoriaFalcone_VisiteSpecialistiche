@@ -8,6 +8,11 @@ const clearFormButtons = document.querySelectorAll(".clearForm");
 let confFileContent;
 const hours = [8, 9, 10, 11, 12];
 
+const reservationForm = generateReservationForm(modalBody);
+reservationForm.build(hours);
+reservationForm.render();
+reservationForm.onsubmit(r => console.log(r));
+
 fetch("./conf.json")
 .then(r => r.json())
 .then(data => {
@@ -17,15 +22,10 @@ fetch("./conf.json")
     navbar.build(confFileContent["tipologie"]);
     navbar.render();
     navbar.onclick(category => {
-        console.log(category);
+        reservationForm.setType(category);
     });
-    console.log(navbar.getCurrentCategory());
+    reservationForm.setType(navbar.getCurrentCategory());
     
 });
-
-const reservationForm = generateReservationForm(modalBody);
-reservationForm.build(hours);
-reservationForm.render();
-reservationForm.onsubmit(r => console.log(r));
 
 clearFormButtons.forEach(b => b.onclick = () => reservationForm.clear());

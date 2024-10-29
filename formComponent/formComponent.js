@@ -49,6 +49,7 @@ export const generateReservationForm = (parentElement) => {
         },
         clear: () => {
             document.querySelectorAll(".form-control").forEach(e => e.value = "");
+            document.querySelector("#hourInput").value = configuration[0];
         }
     };
 };
