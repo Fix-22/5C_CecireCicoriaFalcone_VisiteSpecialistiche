@@ -11,7 +11,10 @@ const hours = [8, 9, 10, 11, 12];
 const reservationForm = generateReservationForm(modalBody);
 reservationForm.build(hours);
 reservationForm.render();
-reservationForm.onsubmit(r => console.log(r));
+reservationForm.onsubmit(r => {
+    console.log(r)
+    reservationForm.clear();
+});
 
 fetch("./conf.json")
 .then(r => r.json())
