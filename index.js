@@ -41,8 +41,7 @@ fetch("./conf.json")
     navbar.onclick(category => {
         reservationForm.setType(category);
         componenteFetch.getData("clinica").then((r) => {
-            let a = JSON.parse(r);
-            componentTable.setData(a ,category)
+            componentTable.setData(r ,category)
         });
     });
     reservationForm.setType(navbar.getCurrentCategory());

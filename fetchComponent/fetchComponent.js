@@ -36,7 +36,10 @@ export const generateFetchComponent = () => {
                     })
                 })
                 .then(r => r.json())
-                .then(data => resolve(data.result))
+                .then(data => {
+                    let dict = JSON.parse(data.result);
+                    resolve(dict);
+                })
                 .catch(err => reject(err.result));
             })
         }
