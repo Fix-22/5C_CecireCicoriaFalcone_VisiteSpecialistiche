@@ -17,12 +17,13 @@ reservationForm.onsubmit(r => {
     reservationForm.clear();
 });
 
+const navbar = generateNavbar(navbarContainer);
+
 fetch("./conf.json")
 .then(r => r.json())
 .then(data => {
     confFileContent = data;
 
-    const navbar = generateNavbar(navbarContainer);
     navbar.build(confFileContent["tipologie"]);
     navbar.render();
     navbar.onclick(category => {
