@@ -41,27 +41,26 @@ export const cerateTable = (parentElement) => {
 
         },
         setData : (inputData, type) => {
-
+            //
             cacheData = inputData;
+            currentData = {};
 
-            let hold = date;
+            let hold = new Date(date);
+
             for (let i = 0; i < days.length; i++) {
 
                 for (let j = 0; j < hours.length; j++) {
-                    let formatDate =  type + "-" + parseInt(date.getDate()) + "" + parseInt(date.getMonth() + 1) + "" + date.getFullYear() + "-" + hours[j];
-
+                    let formatDate =  type + "-" + parseInt(hold.getDate()) + "" + parseInt(hold.getMonth() + 1) + "" + hold.getFullYear() + "-" + hours[j];
                     if (cacheData[formatDate]) {
                         currentData[formatDate] = cacheData[formatDate];
                     } else {
                         currentData[formatDate] = "";
                     }
-
                 }   
-
-                date.setDate(date.getDate() + 1);
-
+                hold.setDate(hold.getDate() + 1);
+                
             }
-            date = hold;
+
             console.log(currentData);
         },
         next : () => {
