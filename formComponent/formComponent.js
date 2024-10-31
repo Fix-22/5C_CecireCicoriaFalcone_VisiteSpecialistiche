@@ -29,7 +29,7 @@ export const generateReservationForm = (parentElement) => {
                 let hourVal = document.getElementById("hourInput").value;
                 let nameVal = document.getElementById("nameInput").value;
 
-                const key = type + "-" + dateVal[2] + dateVal[1] + dateVal[0] + "-" + hourVal;
+                const key = type + "-" + parseInt(dateVal[2]) + "" + parseInt(dateVal[1]) + "" + dateVal[0] + "-" + hourVal;
                 const reservation = {}
                 reservation[key] = nameVal;
                 
