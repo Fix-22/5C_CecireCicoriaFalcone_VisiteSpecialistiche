@@ -16,16 +16,14 @@ const componenteFetch = generateFetchComponent() ;
 const componentTable = cerateTable(tableContainer);
 const reservationForm = generateReservationForm(modalBody);
 
-componentTable.build();
+componentTable.build(hours, days);
 
 reservationForm.build(hours);
 reservationForm.render();
 reservationForm.onsubmit(r => {
     console.log(r);
-
     //
     componenteFetch.setData("clinica", r) ;
-
     reservationForm.clear();
 });
 
@@ -42,6 +40,7 @@ fetch("./conf.json")
     navbar.render();
     navbar.onclick(category => {
         reservationForm.setType(category);
+        componenteFetch.getData().then((r) => componentTable.setData(r ,category));
     });
     reservationForm.setType(navbar.getCurrentCategory());
     
