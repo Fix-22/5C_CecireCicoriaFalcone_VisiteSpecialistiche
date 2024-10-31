@@ -7,6 +7,7 @@ const clearFormButtons = document.querySelectorAll(".clearForm");
 
 let confFileContent;
 const hours = [8, 9, 10, 11, 12];
+const days = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì"];
 
 const reservationForm = generateReservationForm(modalBody);
 reservationForm.build(hours);
