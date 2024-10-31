@@ -18,6 +18,7 @@ reservationForm.render();
 reservationForm.onsubmit(r => {
     console.log(r);
 
+    //
     componenteFetch.setData("clinica", r) ;
 
     reservationForm.clear();
