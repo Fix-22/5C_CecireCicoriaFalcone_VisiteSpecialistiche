@@ -1,10 +1,29 @@
 export const cerateTable = (parentElement) => {
-    let config ;
-    let data = {} ;
+    let hours;
+    let days;
+    let cacheData = {};
+    let currentData = {};
+
+    let date = new Date(Date.now());
+
+    /*
+    {
+        "XX/YY/ZZZZ - H": "Name"/"" 
+    }
+    */
 
     return {
-        build : (inputConfiguration) => {
-            config = inputConfiguration ;
+        build : (newHours, newDays) => {
+            hours = newHours;
+            days = newDays;
+            while (date.getDay() !== 1) {
+                if (date.getDay() === 6 || date.getDay() === 0) {
+                    date.setDate(date.getDate() + 1);
+                } else {
+                    date.setDate(date.getDate() - 1);
+                }
+            }
+            console.log(date);
         },
         render : () => {
             let html = '<table class="table"> <thead><td>Data</td>' ;
@@ -21,10 +40,29 @@ export const cerateTable = (parentElement) => {
 
         },
         setData : (inputData) => {
-            
+
+            cacheData = inputData;
+
+            for (let i = 0; i < days.length; i++) {
+                
+            }
+        },
+        next : () => {
+            date.setDate(date.getDate() + 7);
+            while (date.getDay() !== 1) {
+                date.setDate(date.getDate() - 1);
+            }
+            console.log(date);
+        },
+        previus : () => {
+            date.setDate(date.getDate() - 7);
+            while (date.getDay() !== 1) {
+                date.setDate(date.getDate() - 1);
+            }
+            console.log(date);
         },
         getData : () => {
-            return data ;
+            return liveData;
         }
     }
 }
