@@ -1,7 +1,7 @@
 import {generateFetchComponent} from "./fetchComponent/fetchComponent.js";
 import {generateReservationForm} from "./formComponent/formComponent.js";
 import {generateNavbar} from "./navbarComponent/navbarComponent.js";
-import { cerateTable } from "./tableComponent/tableComponent.js";
+import { generateTable } from "./tableComponent/tableComponent.js";
 
 const modalBody = document.getElementById("modalBody");
 const navbarContainer = document.getElementById("navbarContainer");
@@ -13,7 +13,7 @@ const hours = [8, 9, 10, 11, 12];
 const days = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì"];
 
 const componenteFetch = generateFetchComponent() ;
-const componentTable = cerateTable(tableContainer);
+const componentTable = generateTable(tableContainer);
 const reservationForm = generateReservationForm(modalBody);
 
 componentTable.build(hours, days);

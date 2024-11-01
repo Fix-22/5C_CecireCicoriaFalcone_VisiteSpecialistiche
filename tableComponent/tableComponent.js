@@ -1,4 +1,4 @@
-export const cerateTable = (parentElement) => {
+export const generateTable = (parentElement) => {
     let hours;
     let days;
     let cacheData = {};
