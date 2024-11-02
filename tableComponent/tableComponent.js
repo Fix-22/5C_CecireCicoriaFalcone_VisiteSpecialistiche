@@ -40,17 +40,14 @@ export const generateTable = (parentElement) => {
             html += "</tr>";
             
             //Values
-            /*
-            let k = 0;
-            html += "<tr>";
-            for (let i = 0; i < dataValues.length; i++) {
-                if (i % days.length == 0) {
-                    html += "</tr><tr><td>" + hours[k] + "</td>"
-                    k++;
+            for (let h = 0; h < hours.length; h++) {
+                html += "<tr><td>" + hours[h] + "</td>";
+                for (let i = 0; i < dataValues.length; i += 5) {
+                    html += "<td>" + dataValues[i + h] + "</td>";
                 }
-                html += "<td>" + dataValues[i] + "</td>";
+                html += "</tr>";
             }
-            */
+            
             parentElement.innerHTML = html ;
         },
         add : (reservation) => {
