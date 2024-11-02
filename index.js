@@ -52,13 +52,13 @@ fetch("./conf.json")
         if (componentTable.add(r)) {
             reservationForm.setStatus(true);
             componentTable.setData(componentTable.getData(), navbar.getCurrentCategory());
-            componentTable.render();
             componenteFetch.setData("clinica", componentTable.getData()) ;
         }
         else {
             reservationForm.setStatus(false);
         }
     });
+    reservationForm.oncancel(() => componentTable.render());
 
     prevButton.build('Settimana precedente') ;
     nextButton.build('Settimana\nsuccessiva') ;

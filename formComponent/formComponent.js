@@ -1,6 +1,6 @@
 export const generateReservationForm = (parentElement) => {
     let configuration;
-    let callback;
+    let submitCallback, cancelCallback;
     let type;
 
     return {
@@ -8,7 +8,10 @@ export const generateReservationForm = (parentElement) => {
             configuration = inputConfiguration;
         },
         onsubmit: (inputCallback) => {
-            callback = inputCallback;
+            submitCallback = inputCallback;
+        },
+        oncancel: (inputCallback) => {
+            cancelCallback = inputCallback;
         },
         render: () => {
             let html = '<form id="reservationForm" class="container"><label>Data</label><input type="date" id="dateInput" class="form-control"><label>Ora</label><select id="hourInput" class="form-select">';
@@ -37,7 +40,7 @@ export const generateReservationForm = (parentElement) => {
                 document.querySelector("#hourInput").value = configuration[0];
                 document.getElementById("resultLabel").innerText = "";
                 
-                callback(reservation);
+                submitCallback(reservation);
             };
 
             document.querySelectorAll(".clearForm").forEach(b => {
@@ -45,6 +48,8 @@ export const generateReservationForm = (parentElement) => {
                     document.querySelectorAll(".form-control").forEach(e => e.value = "");
                     document.querySelector("#hourInput").value = configuration[0];
                     document.getElementById("resultLabel").innerText = "";
+
+                    cancelCallback();
                 }
             });
         },
