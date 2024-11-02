@@ -42,18 +42,18 @@ fetch("./conf.json")
         componentTable.setData(data, navbar.getCurrentCategory());
         componentTable.render();
     });
-});
 
-clearFormButtons.forEach(b => b.onclick = () => reservationForm.clear());
+    clearFormButtons.forEach(b => b.onclick = () => reservationForm.clear());
 
-reservationForm.build(hours);
-reservationForm.render();
-reservationForm.onsubmit(r => {
-    if (componentTable.add(r)) {
-        console.log(r)
-        componentTable.setData(componentTable.getData(), navbar.getCurrentCategory());
-        componentTable.render();
-        componenteFetch.setData("clinica", componentTable.getData()) ;
-    }
-    reservationForm.clear();
+    reservationForm.build(hours);
+    reservationForm.render();
+    reservationForm.onsubmit(r => {
+        if (componentTable.add(r)) {
+            console.log(r)
+            componentTable.setData(componentTable.getData(), navbar.getCurrentCategory());
+            componentTable.render();
+            componenteFetch.setData("clinica", componentTable.getData()) ;
+        }
+        reservationForm.clear();
+    });
 });
