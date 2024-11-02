@@ -16,17 +16,6 @@ const componenteFetch = generateFetchComponent() ;
 const componentTable = generateTable(tableContainer);
 const reservationForm = generateReservationForm(modalBody);
 
-componentTable.build(hours, days);
-
-reservationForm.build(hours);
-reservationForm.render();
-reservationForm.onsubmit(r => {
-    console.log(r);
-    //
-    componenteFetch.setData("clinica", r) ;
-    reservationForm.clear();
-});
-
 const navbar = generateNavbar(navbarContainer);
 
 fetch("./conf.json")
@@ -42,6 +31,7 @@ fetch("./conf.json")
         reservationForm.setType(category);
         componenteFetch.getData("clinica").then((r) => {
             componentTable.setData(r ,category)
+            componentTable.render();
         });
     });
     reservationForm.setType(navbar.getCurrentCategory());
@@ -49,3 +39,19 @@ fetch("./conf.json")
 });
 
 clearFormButtons.forEach(b => b.onclick = () => reservationForm.clear());
+
+componentTable.build(hours, days);
+//componentTable.render();
+//componentTable.setData({"Cardiologia-1112024-11":"adsdas","Cardiologia-1112024-12":"dsaa231","Cardiologia-1112024-8":"holl","Cardiologia-1112024-10":"gfrd","Cardiologia-28102024-8":"otto"}, navbar.getCurrentCategory());
+
+reservationForm.build(hours);
+reservationForm.render();
+reservationForm.onsubmit(r => {
+    if (componentTable.add(r)) {
+        console.log(r)
+        componentTable.setData(componentTable.getData(), navbar.getCurrentCategory());
+        componentTable.render();
+        componenteFetch.setData("clinica", componentTable.getData()) ;
+    }
+    reservationForm.clear();
+});

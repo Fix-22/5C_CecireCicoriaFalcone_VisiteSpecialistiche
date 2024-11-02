@@ -23,25 +23,44 @@ export const generateTable = (parentElement) => {
                     date.setDate(date.getDate() - 1);
                 }
             }
-
-            console.log(date);
         },
         render : () => {
-            let html = '<table class="table"> <thead><td>Data</td>' ;
-
-            //headers tabella
-            html += Object.keys(config).map(element => '<td>' + element.substring(0, 1).toUpperCase() + element.substring(1, element-length)).join("") + '</thead>' ;
-
-            //dati tabella
+            let html = '<table class="table"> <thead>' ;
+            let dataKeys = Object.keys(currentData);
+            let dataValues = Object.values(currentData);
             
+            console.log(dataKeys);
+            console.log(dataValues);
 
+            //Headers
+            html += "<tr><th></th>";
+            for (let i = 0; i < days.length; i++) {
+                html += "<th>" + days[i] + "\n" + dataKeys[i*hours.length].split("-")[1] + "</th>";
+            }
+            html += "</tr>";
+            
+            //Values
+            /*
+            let k = 0;
+            html += "<tr>";
+            for (let i = 0; i < dataValues.length; i++) {
+                if (i % days.length == 0) {
+                    html += "</tr><tr><td>" + hours[k] + "</td>"
+                    k++;
+                }
+                html += "<td>" + dataValues[i] + "</td>";
+            }
+            */
             parentElement.innerHTML = html ;
         },
         add : (reservation) => {
-
+            if (!cacheData[Object.keys(reservation)[0]]) { //Se è presente il valore
+                cacheData[Object.keys(reservation)[0]] = Object.values(reservation)[0];
+                return true;
+            }
+            return false;
         },
         setData : (inputData, type) => {
-            //
             cacheData = inputData;
             currentData = {};
 
@@ -50,7 +69,7 @@ export const generateTable = (parentElement) => {
             for (let i = 0; i < days.length; i++) {
 
                 for (let j = 0; j < hours.length; j++) {
-                    let formatDate =  type + "-" + parseInt(hold.getDate()) + "" + parseInt(hold.getMonth() + 1) + "" + hold.getFullYear() + "-" + hours[j];
+                    let formatDate =  type + "-" + parseInt(hold.getDate()) + "/" + parseInt(hold.getMonth() + 1) + "/" + hold.getFullYear() + "-" + hours[j];
                     if (cacheData[formatDate]) {
                         currentData[formatDate] = cacheData[formatDate];
                     } else {
@@ -61,7 +80,7 @@ export const generateTable = (parentElement) => {
                 
             }
 
-            console.log(currentData);
+            //console.log(currentData);
         },
         next : () => {
             date.setDate(date.getDate() + 7);
@@ -78,7 +97,7 @@ export const generateTable = (parentElement) => {
             console.log(date);
         },
         getData : () => {
-            return liveData;
+            return cacheData;
         }
     }
 }
