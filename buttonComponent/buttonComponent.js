@@ -14,14 +14,11 @@ export const generateButtonComponent = (parentElement) => {
 
             parentElement.innerHTML = html ;
 
-            let lista = document.querySelectorAll("#" + nome) ;
+            let e = document.getElementById(nome) ;
             
-            lista.forEach((element) => {
-                element.onclick = () => {
-                    console.log('bottone ' + nome + ' premuto') ;
-                    callback() ;
-                }
-            })
+            e.onclick = () => {
+                callback() ;
+            }
         }
     }
 }

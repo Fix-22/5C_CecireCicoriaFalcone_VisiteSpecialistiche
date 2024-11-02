@@ -15,8 +15,9 @@ const days = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì"];
 const componenteFetch = generateFetchComponent() ;
 const componentTable = generateTable(tableContainer);
 const reservationForm = generateReservationForm(modalBody);
-
 const navbar = generateNavbar(navbarContainer);
+const prevButton = generateButtonComponent(prevButtonContainer) ;
+const nextButton = generateButtonComponent(nextButtonContainer) ;
 
 fetch("./conf.json")
 .then(r => r.json())
@@ -56,16 +57,21 @@ fetch("./conf.json")
             reservationForm.setStatus(false);
         }
     });
+
+    prevButton.build('Settimana precedente') ;
+    nextButton.build('Settimana\nsuccessiva') ;
+
+    prevButton.render() ;
+    prevButton.onsubmit(() => {
+        componentTable.previus()
+        componentTable.setData(componentTable.getData(), navbar.getCurrentCategory());  
+        componentTable.render()
+    }) ;
+
+    nextButton.render() ;
+    nextButton.onsubmit(() => {
+        componentTable.next()
+        componentTable.setData(componentTable.getData(), navbar.getCurrentCategory());  
+        componentTable.render()
+    }) ;
 });
-
-const prevButton = generateButtonComponent(prevButtonContainer) ;
-const nextButton = generateButtonComponent(nextButtonContainer) ;
-
-prevButton.build('Settimana\nprecedente') ;
-nextButton.build('Settimana\nsuccessiva') ;
-
-prevButton.render() ;
-prevButton.onsubmit(() => componentTable.previus()) ;
-
-nextButton.render() ;
-prevButton.onsubmit(() => componentTable.next()) ;

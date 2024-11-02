@@ -76,8 +76,6 @@ export const generateTable = (parentElement) => {
                 hold.setDate(hold.getDate() + 1);
                 
             }
-
-            //console.log(currentData);
         },
         next : () => {
             date.setDate(date.getDate() + 7);
