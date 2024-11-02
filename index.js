@@ -74,4 +74,13 @@ fetch("./conf.json")
         componentTable.setData(componentTable.getData(), navbar.getCurrentCategory());  
         componentTable.render()
     }) ;
+
+    setInterval(() => {
+        reservationForm.setType(navbar.getCurrentCategory());
+        componenteFetch.getData("clinica").then((r) => {
+            componentTable.setData(r ,navbar.getCurrentCategory())
+            componentTable.render();
+        });
+        console.log("Aggiorno");
+    }, 5000);
 });
