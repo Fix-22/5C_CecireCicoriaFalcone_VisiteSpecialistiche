@@ -42,7 +42,7 @@ export const generateTable = (parentElement) => {
             //Values
             for (let h = 0; h < hours.length; h++) {
                 html += "<tr><td>" + hours[h] + "</td>";
-                for (let i = 0; i < dataValues.length; i += 5) {
+                for (let i = 0; i < dataValues.length; i += hours.length) {
                     html += "<td>" + dataValues[i + h] + "</td>";
                 }
                 html += "</tr>";
