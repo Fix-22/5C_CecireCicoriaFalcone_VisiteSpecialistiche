@@ -1,6 +1,7 @@
 import {generateFetchComponent} from "./fetchComponent/fetchComponent.js";
 import {generateReservationForm} from "./formComponent/formComponent.js";
 import {generateNavbar} from "./navbarComponent/navbarComponent.js";
+import {generateButtonComponent} from "./buttonComponent/buttonComponent.js";
 import { generateTable } from "./tableComponent/tableComponent.js";
 
 const modalBody = document.getElementById("modalBody");
@@ -56,3 +57,15 @@ fetch("./conf.json")
         }
     });
 });
+
+const prevButton = generateButtonComponent(prevButtonContainer) ;
+const nextButton = generateButtonComponent(nextButtonContainer) ;
+
+prevButton.build('Settimana\nprecedente') ;
+nextButton.build('Settimana\nsuccessiva') ;
+
+prevButton.render() ;
+prevButton.onsubmit(componentTable.previus()) ;
+
+nextButton.render() ;
+prevButton.onsubmit(componentTable.next()) ;

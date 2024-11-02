@@ -10,7 +10,7 @@ export const generateButtonComponent = (parentElement) => {
             callback = inputCallback ;
         },
         render : function() {
-            let html = '<button type="button" id="' + nome + '" class="btn btn-primary actionButton ' + nome + '">' + nome + '</button>' ;
+            let html = '<button type="button" id="' + nome + '" class="btn btn-secondary actionButton ' + nome + '">' + nome + '</button>' ;
 
             parentElement.innerHTML = html ;
 
@@ -18,6 +18,7 @@ export const generateButtonComponent = (parentElement) => {
             
             lista.forEach((element) => {
                 element.onclick = () => {
+                    console.log('bottone ' + nome + ' premuto') ;
                     callback() ;
                 }
             })
