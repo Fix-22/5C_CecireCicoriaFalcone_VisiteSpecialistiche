@@ -82,5 +82,5 @@ fetch("./conf.json")
             componentTable.render();
         });
         console.log("Aggiorno");
-    }, 5000);
+    }, 300000);
 });
