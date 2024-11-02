@@ -6,7 +6,6 @@ import { generateTable } from "./tableComponent/tableComponent.js";
 const modalBody = document.getElementById("modalBody");
 const navbarContainer = document.getElementById("navbarContainer");
 const tableContainer = document.getElementById("tableContainer");
-const clearFormButtons = document.querySelectorAll(".clearForm");
 
 let confFileContent;
 const hours = [8, 9, 10, 11, 12];
@@ -43,17 +42,17 @@ fetch("./conf.json")
         componentTable.render();
     });
 
-    clearFormButtons.forEach(b => b.onclick = () => reservationForm.clear());
-
     reservationForm.build(hours);
     reservationForm.render();
     reservationForm.onsubmit(r => {
         if (componentTable.add(r)) {
-            console.log(r)
+            reservationForm.setStatus(true);
             componentTable.setData(componentTable.getData(), navbar.getCurrentCategory());
             componentTable.render();
             componenteFetch.setData("clinica", componentTable.getData()) ;
         }
-        reservationForm.clear();
+        else {
+            reservationForm.setStatus(false);
+        }
     });
 });

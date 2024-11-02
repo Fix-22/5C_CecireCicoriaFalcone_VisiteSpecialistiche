@@ -32,16 +32,28 @@ export const generateReservationForm = (parentElement) => {
                 const key = type + "-" + parseInt(dateVal[2]) + "/" + parseInt(dateVal[1]) + "/" + dateVal[0] + "-" + hourVal;
                 const reservation = {}
                 reservation[key] = nameVal;
+
+                document.querySelectorAll(".form-control").forEach(e => e.value = "");
+                document.querySelector("#hourInput").value = configuration[0];
+                document.getElementById("resultLabel").innerText = "";
                 
                 callback(reservation);
             };
+
+            document.querySelectorAll(".clearForm").forEach(b => {
+                b.onclick = () => {
+                    document.querySelectorAll(".form-control").forEach(e => e.value = "");
+                    document.querySelector("#hourInput").value = configuration[0];
+                    document.getElementById("resultLabel").innerText = "";
+                }
+            });
         },
         setStatus: (status) => {
             if (status) {
-                document.getElementById("resultLabel").innerText = "OK";
+                document.getElementById("resultLabel").innerText = "Prenotazione aggiunta";
             }
             else {
-                document.getElementById("resultLabel").innerText = "KO";
+                document.getElementById("resultLabel").innerText = "Non è possibile aggiungere la prenotazione";
             }
         },
         setType: (inputType) => {
