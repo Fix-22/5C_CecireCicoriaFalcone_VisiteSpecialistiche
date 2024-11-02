@@ -65,7 +65,7 @@ prevButton.build('Settimana\nprecedente') ;
 nextButton.build('Settimana\nsuccessiva') ;
 
 prevButton.render() ;
-prevButton.onsubmit(componentTable.previus()) ;
+prevButton.onsubmit(() => componentTable.previus()) ;
 
 nextButton.render() ;
-prevButton.onsubmit(componentTable.next()) ;
+prevButton.onsubmit(() => componentTable.next()) ;
