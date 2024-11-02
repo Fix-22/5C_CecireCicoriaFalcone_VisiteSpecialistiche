@@ -36,13 +36,15 @@ fetch("./conf.json")
     });
     reservationForm.setType(navbar.getCurrentCategory());
     
+    componentTable.build(hours, days);
+    componenteFetch.getData("clinica").then(data => {
+        console.log(data)
+        componentTable.setData(data, navbar.getCurrentCategory());
+        componentTable.render();
+    });
 });
 
 clearFormButtons.forEach(b => b.onclick = () => reservationForm.clear());
-
-componentTable.build(hours, days);
-//componentTable.render();
-//componentTable.setData({"Cardiologia-1112024-11":"adsdas","Cardiologia-1112024-12":"dsaa231","Cardiologia-1112024-8":"holl","Cardiologia-1112024-10":"gfrd","Cardiologia-28102024-8":"otto"}, navbar.getCurrentCategory());
 
 reservationForm.build(hours);
 reservationForm.render();
