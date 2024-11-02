@@ -2,11 +2,13 @@ import {generateFetchComponent} from "./fetchComponent/fetchComponent.js";
 import {generateReservationForm} from "./formComponent/formComponent.js";
 import {generateNavbar} from "./navbarComponent/navbarComponent.js";
 import {generateButtonComponent} from "./buttonComponent/buttonComponent.js";
-import { generateTable } from "./tableComponent/tableComponent.js";
+import {generateTable} from "./tableComponent/tableComponent.js";
 
 const modalBody = document.getElementById("modalBody");
 const navbarContainer = document.getElementById("navbarContainer");
 const tableContainer = document.getElementById("tableContainer");
+const prevButtonContainer = document.getElementById("prevButtonContainer");
+const nextButtonContainer = document.getElementById("nextButtonContainer");
 
 let confFileContent;
 const hours = [8, 9, 10, 11, 12];
@@ -63,16 +65,16 @@ fetch("./conf.json")
 
     prevButton.render() ;
     prevButton.onsubmit(() => {
-        componentTable.previus()
+        componentTable.previous();
         componentTable.setData(componentTable.getData(), navbar.getCurrentCategory());  
-        componentTable.render()
+        componentTable.render();
     }) ;
 
     nextButton.render() ;
     nextButton.onsubmit(() => {
-        componentTable.next()
+        componentTable.next();
         componentTable.setData(componentTable.getData(), navbar.getCurrentCategory());  
-        componentTable.render()
+        componentTable.render();
     }) ;
 
     setInterval(() => {

@@ -84,7 +84,7 @@ export const generateTable = (parentElement) => {
             }
             console.log(date);
         },
-        previus : () => {
+        previous : () => {
             date.setDate(date.getDate() - 7);
             while (date.getDay() !== 1) {
                 date.setDate(date.getDate() - 1);
