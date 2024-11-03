@@ -41,7 +41,6 @@ fetch("./conf.json")
     
     componentTable.build(hours, days);
     componenteFetch.getData("clinica").then(data => {
-        console.log(data)
         componentTable.setData(data, navbar.getCurrentCategory());
         componentTable.render();
     });
@@ -83,6 +82,5 @@ fetch("./conf.json")
             componentTable.setData(r ,navbar.getCurrentCategory())
             componentTable.render();
         });
-        console.log("Aggiorno");
     }, 300000);
 });

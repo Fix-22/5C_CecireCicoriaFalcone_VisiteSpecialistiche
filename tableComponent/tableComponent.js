@@ -6,12 +6,6 @@ export const generateTable = (parentElement) => {
 
     let date = new Date(Date.now());
 
-    /*
-    {
-        "XX/YY/ZZZZ - H": "Name"/"" 
-    }
-    */
-
     return {
         build : (newHours, newDays) => {
             hours = newHours;
@@ -28,9 +22,6 @@ export const generateTable = (parentElement) => {
             let html = '<table class="table"> <thead>' ;
             let dataKeys = Object.keys(currentData);
             let dataValues = Object.values(currentData);
-            
-            console.log(dataKeys);
-            console.log(dataValues);
 
             //Headers
             html += "<tr><th></th>";
@@ -40,9 +31,9 @@ export const generateTable = (parentElement) => {
             html += "</tr>";
             
             //Values
-            for (let h = 0; h < hours.length; h++) {
+            for (let h = 0; h < hours.length; h++) { // itera per ogni ora
                 html += "<tr><td>" + hours[h] + "</td>";
-                for (let i = 0; i < dataValues.length; i += hours.length) {
+                for (let i = 0; i < dataValues.length; i += hours.length) { // itera ogni giorno, quindi l'aumento deve essere del numero di ore
                     html += "<td>" + dataValues[i + h] + "</td>";
                 }
                 html += "</tr>";
@@ -61,7 +52,7 @@ export const generateTable = (parentElement) => {
             cacheData = inputData;
             currentData = {};
 
-            let hold = new Date(date);
+            let hold = new Date(date); // data usata per la tabella visualizzata
 
             for (let i = 0; i < days.length; i++) {
 
@@ -82,14 +73,12 @@ export const generateTable = (parentElement) => {
             while (date.getDay() !== 1) {
                 date.setDate(date.getDate() - 1);
             }
-            console.log(date);
         },
         previous : () => {
             date.setDate(date.getDate() - 7);
             while (date.getDay() !== 1) {
                 date.setDate(date.getDate() - 1);
             }
-            console.log(date);
         },
         getData : () => {
             return cacheData;

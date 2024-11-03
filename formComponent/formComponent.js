@@ -43,7 +43,7 @@ export const generateReservationForm = (parentElement) => {
                 submitCallback(reservation);
             };
 
-            document.querySelectorAll(".clearForm").forEach(b => {
+            document.querySelectorAll(".clearForm").forEach(b => { // per i pulsanti che svuotano i campi del form
                 b.onclick = () => {
                     document.querySelectorAll(".form-control").forEach(e => e.value = "");
                     document.querySelector("#hourInput").value = configuration[0];
