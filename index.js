@@ -9,6 +9,7 @@ const navbarContainer = document.getElementById("navbarContainer");
 const tableContainer = document.getElementById("tableContainer");
 const prevButtonContainer = document.getElementById("prevButtonContainer");
 const nextButtonContainer = document.getElementById("nextButtonContainer");
+const spinner = document.getElementById("spinner");
 
 let confFileContent;
 const hours = [8, 9, 10, 11, 12];
@@ -32,7 +33,9 @@ fetch("./conf.json")
     navbar.render();
     navbar.onclick(category => {
         reservationForm.setType(category);
+        spinner.classList.remove("d-none");
         componenteFetch.getData("clinica").then((r) => {
+            spinner.classList.add("d-none");
             componentTable.setData(r ,category)
             componentTable.render();
         });
@@ -40,7 +43,9 @@ fetch("./conf.json")
     reservationForm.setType(navbar.getCurrentCategory());
     
     componentTable.build(hours, days);
+    spinner.classList.remove("d-none");
     componenteFetch.getData("clinica").then(data => {
+        spinner.classList.add("d-none");
         componentTable.setData(data, navbar.getCurrentCategory());
         componentTable.render();
     });
@@ -78,7 +83,9 @@ fetch("./conf.json")
 
     setInterval(() => {
         reservationForm.setType(navbar.getCurrentCategory());
+        spinner.classList.remove("d-none");
         componenteFetch.getData("clinica").then((r) => {
+            spinner.classList.add("d-none");
             componentTable.setData(r ,navbar.getCurrentCategory())
             componentTable.render();
         });
