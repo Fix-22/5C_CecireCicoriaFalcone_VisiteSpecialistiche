@@ -51,7 +51,7 @@ fetch("./conf.json")
         if (componentTable.add(r)) {
             reservationForm.setStatus(true);
             componentTable.setData(componentTable.getData(), navbar.getCurrentCategory());
-            componenteFetch.setData("clinica", componentTable.getData()) ;
+            componenteFetch.setData("clinica", componentTable.getData()).then(r => console.log(r));
         }
         else {
             reservationForm.setStatus(false);
