@@ -19,14 +19,14 @@ export const generateTable = (parentElement) => {
             }
         },
         render : () => {
-            let html = '<table class="table"> <thead>' ;
+            let html = '<table class="table table-bordered"> <thead>' ;
             let dataKeys = Object.keys(currentData);
             let dataValues = Object.values(currentData);
 
             //Headers
-            html += "<tr><th></th>";
+            html += "<tr><th class='table-secondary'>#</th>";
             for (let i = 0; i < days.length; i++) {
-                html += "<th>" + days[i] + "\n" + dataKeys[i*hours.length].split("-")[1] + "</th>";
+                html += "<th  class='table-secondary'>" + days[i] + "\n" + dataKeys[i*hours.length].split("-")[1] + "</th>";
             }
             html += "</tr>";
             
